@@ -1,7 +1,22 @@
 \documentclass[twocolumn]{article}
 \usepackage{hyperref}
-     \hypersetup{bookmarksnumbered = true}
+\hypersetup{bookmarksnumbered = true}
+\usepackage{fancyhdr}
+
+% Define the header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{v0.2}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
 \begin{document}
+
+\title{Wotori Studio Ecosystem}
+\author{Wotori Movako}
+\date{\today}
+\maketitle
+\thispagestyle{fancy} % add footer to the first title page
 
 \section{Introduction}
 
@@ -12,29 +27,32 @@ By providing a borderless environment, we aim to break down geographical barrier
 
 Through our user-friendly interfaces, we strive to make the content creation process seamless and accessible to all. Whether you're an experienced professional or just starting out, our tools and features are designed to cater to a diverse range of creative needs. We understand that every creator has a unique vision, and our platform is built with the flexibility to accommodate various artistic styles and mediums.
 
-Additionally, at Wotori Studio, we prioritize the protection of intellectual property rights. We ensure that creators retain full ownership and control over their digital assets. This means that artists can monetize their work, license it to others, or even collaborate with brands and businesses, all while maintaining their independence and creative integrity.
+Additionally, at Wotori Studio, we prioritize the protection of intellectual property rights. We ensure that creators retain full ownership and control over their digital assets. This means that artists can monetize their work, license it to others, or even collaborate with brands and businesses, all while maintaining their independence and creative integrity. At the moment, we are implementing the appropriate interface at the blockchain level, not including the legal features of different countries.
 
 By fostering a community that values creativity, innovation, and individuality, Wotori Studio is committed to empowering creators to thrive in the digital landscape. We believe that when artists have the freedom to express themselves without constraints, they can truly unleash their full potential and make a lasting impact on the world.
 
+Moreover, our methodology that we define with stellar.ekza.io project allows us to establish a new type of cooperation and communication between artists previously impossible. Artists no longer need to look for partners and spend effort and energy on fixing relationships with the subsequent division of profits, which in itself weedes out a huge part of the potential visual convention. By providing artists of such a plan with tools based on blockchain, smart contracts and user interface, we enable the emergence of a new visual entities that simply could not appear without this kind of technologies combined together (web2, web3, blockchain, smartcontracts, IPFS, libraries and frameworks). Right before our eyes, we see how technology is changing the means and ways of human interaction and bringing new visuality to the world.
 
 \section{Design}\label{design}
 To bring our vision to life, we have chosen to leverage modern blockchain technologies, specifically the Cosmos-based blockchain Archway. This decision was driven by our admiration for the secure and efficient nature of Rust programming language when it comes to developing safe smart contracts. By utilizing Rust, we ensure that our smart contracts are both highly performant and reliable. Furthermore, the Cosmos community offers a comprehensive set of tools, including CosmWasm, which equips developers with everything they need to turn their ideas into reality.
 
-Within our blockchain ecosystem, we have developed several smart contracts that play crucial roles in making our idea a reality. First and foremost, we have created the Instantiator contract, which empowers users to generate their own projects on the blockchain. This contract allows projects to be open for collaboration, creating an environment where creators can come together and contribute their unique talents. Additionally, projects can also be closed for collaboration, granting creators the freedom to work independently when desired.
+Within our blockchain ecosystem, we have developed several smart contracts that play crucial roles in making our idea a reality. First and foremost, we have created the Instantiator contract, which empowers users to generate their own Universes and Entities with assets on the blockchain. This contracts allows Entities (projects) to be open for collaboration, creating an environment where creators can come together and contribute their unique talents. Additionally, projects can also be closed for collaboration, granting creators the freedom to work independently when desired or specifying particular administrators (collaborators) that has the allowance to contribute the content.
 
-In addition to the Instantiator contract, we have also developed the CW-Project contract. This contract serves as a repository for user assets, enabling creators to store and manage their creative content securely on the blockchain. The CW-Project contract also facilitates the generation of new assets based on existing ones, providing a means to track the progress of asset development and the level of participation from contributors. This information becomes invaluable when it comes to rewarding and distributing awards for content usage, as it allows for fair and transparent allocation based on the level of involvement.
+In addition to the Instantiator contract, we have also developed the CW-Project contract (that allow to crate Enities like a "Character", "Creature" "Animal", "Prop" e.t.c.). This contract serves as a repository for user assets, enabling creators to store and manage their creative content securely on the blockchain. The CW-Project contract also facilitates the generation of new assets based on existing ones, providing a means to track the progress of asset development and the level of participation from contributors. This information becomes invaluable when it comes to rewarding and distributing awards for content usage, as it allows for fair and transparent allocation based on the level of involvement.
 
-By utilizing Archway and implementing these smart contracts, we are creating a decentralized ecosystem that empowers creators to collaborate, develop, and showcase their content while maintaining control over their intellectual property. The use of blockchain technology ensures data immutability and transparency, while the smart contracts facilitate secure and efficient interactions within the platform.
+We also work on the feature that allows creators to fork open entities from others Universes to allow collaborate cross all the universes mixing them together.
+
+By utilizing Archway and implementing these smart contracts, we are creating a decentralized ecosystem that empowers creators to collaborate, develop, and showcase their content while maintaining control over their intellectual property. The use of blockchain technology ensures data immutability and transparency, while the smart contracts facilitate secure and efficient interactions within the platform. Also, by utilising the smart contract reward feature, we empower the entire universe and entities creators with control over all the generated rewards on the Archway blockchain network. These creators are represented in the Ekza Stellar interface as developers on the Archway blockchain and have direct access to all the resources and tools that Archway provides to developers for managing smart contract instances. The platform collects one-time payments during the university creation stage, and ensures that all future executions and smart contracts are owned by the creators themselves. Additionally, the platform will provide and develop various additional features that users can utilize, including smart contract upgrades. These upgrades will be available for a small fee, which will enable the platform to grow in tandem with the artists.
 
 We are excited to offer a platform where creators can unleash their full potential, with the assurance that their work is protected and their contributions are duly recognized. By leveraging the power of blockchain and the capabilities of smart contracts, Wotori Studio aims to revolutionize the way content is created, shared, and rewarded.
 
 
 \section{Implementation}\label{implementation}
 \paragraph{Technology Selection:}
-   We conducted extensive research and evaluation to select the most suitable technology for the Wotori Studio platform. After careful consideration, we chose Cosmos-based Archway as our underlying blockchain technology. Archway provides a robust and scalable infrastructure that aligns with our vision of a decentralized and borderless content creation platform. Additionally, we opted to utilize Rust as our programming language of choice for developing secure smart contracts. Rust's focus on memory safety and performance perfectly aligns with our goals of building a reliable and efficient platform. Furthermore, the Cosmos community offers an array of resources, including CosmWasm, which provides the necessary tools and libraries for smooth smart contract development.
+   We conducted extensive research and evaluation to select the most suitable technology for the Ekza Stellar platform. After careful consideration, we chose Cosmos-based Archway as our underlying blockchain technology. Archway provides a robust and scalable infrastructure that aligns with our vision of a decentralized and borderless content creation platform with powerful rewarding features for developers that we bringing to the creators with our UI. Additionally, we opted to utilize Rust as our programming language of choice for developing secure smart contracts. Rust's focus on memory safety and performance perfectly aligns with our goals of building a reliable and efficient platform. Furthermore, the Cosmos community offers an array of resources, including CosmWasm, which provides the necessary tools and libraries for smooth smart contract development.
 
 \paragraph{Smart Contract Development:}
-   Our development team dedicated significant time and effort to building the smart contracts that power the Wotori Studio platform. The Instantiator contract was created to enable users to generate their own projects on the blockchain. This contract allows for both open and closed collaboration, giving creators the flexibility to work independently or engage in cooperative endeavors. In parallel, we developed the CW-Project contract, which serves as a repository for user assets. This contract enables creators to securely store their content on the blockchain and track the progress of asset development. It also facilitates collaboration by generating assets based on each other, fostering a dynamic and innovative content creation process.
+   Our development team dedicated significant time and effort to building the smart contracts that power the Wotori Studio platform and its projects. The Instantiator contract was created to enable users to generate their own universes and entities on the blockchain. This contract allows for both open and closed collaboration, giving creators the flexibility to work independently or engage in cooperative endeavors. In parallel, we developed the CW-Project contract, which serves as a repository for user assets. This contract enables creators to securely store their content on the blockchain and track the progress of asset development. It also facilitates collaboration by generating assets based on each other, fostering a dynamic and innovative content creation process.
 
 \paragraph{User Interface Design:}
    Our user interface design team focused on creating an intuitive and user-friendly experience for all creators. We aimed to make the platform accessible to users with varying levels of expertise, from seasoned professionals to beginners. The interface incorporates streamlined workflows, clear navigation, and visually appealing elements to enhance the overall user experience. We also prioritized responsive design to ensure optimal usability across devices and screen sizes. Additionally, we implemented interactive features and customizable options to cater to the diverse needs and preferences of our users.
@@ -46,7 +64,7 @@ We are excited to offer a platform where creators can unleash their full potenti
    After thorough testing and optimization, we deployed the Wotori Studio platform on the Archway blockchain. This involved configuring the necessary infrastructure and ensuring seamless integration with the blockchain network. We also implemented scalability measures to accommodate an increasing user base and growing demands for content creation. By leveraging the inherent scalability features of Archway, we can confidently handle a high volume of transactions and user interactions, providing a smooth and uninterrupted experience for our users.
 
 \paragraph{Security and Intellectual Property Protection:}
-   Security is of paramount importance to us at Wotori Studio. To protect user data, assets, and transactions, we implemented robust security measures. The utilization of blockchain technology ensures data immutability and transparency, safeguarding content ownership and intellectual property rights. Additionally, we implemented encryption protocols and stringent access controls to prevent unauthorized access and protect user privacy. Our commitment to secu
+   Security is of paramount importance to us at Wotori Studio. The utilisation of blockchain technology ensures data immutability and transparency, safeguarding content ownership and intellectual property rights. So we have a security at the blockchain level but at the moment there has been no third-party study of the platform for bugs and vulnerability, so we inform you that you assume all responsibility, fear and risk, bearing in mind that the platform is at an early stage of development and may have critical errors on smart contract logic or UI that not covered with unit tests yet. We will report on improvements and changes, as well as conduct a safety review when the time comes and we will be large enough to have sufficient resources for this.
 
 \paragraph{Continuous Improvement and Updates:}
 At Wotori Studio, we are committed to the ongoing development and enhancement of our platform. While we have provided the basic core idea of how the asset creation pipeline should function, we acknowledge that there is still much work to be done. We recognize that our team may not be able to cover all possible use cases, which is why we highly value user feedback and suggestions.
@@ -56,7 +74,7 @@ In the future, we envision the establishment of a decentralized autonomous organ
 
 As we progress, this document will continuously improve and receive updates. We are committed to documenting our advancements, insights, and any revisions made to the platform. By keeping our users informed, we aim to foster transparency and maintain an open line of communication with the community.
 
-Furthermore, we have a roadmap in place to guide our future releases and expansions. This roadmap outlines our plans for introducing new features, enhancing existing functionalities, and scaling the platform to accommodate a growing user base. We are dedicated to delivering regular updates that address user needs and align with our long-term vision for Wotori Studio.
+Furthermore, we have a roadmap in place to guide our future releases and expansions. This roadmap outlines our plans for introducing new features, enhancing existing functionalities, and scaling the platform to accommodate a growing user base. We are dedicated to delivering regular updates that address user needs and align with our long-term vision for Wotori Studio. But it is important to add that it is directly related to the resources we have and reserve the right to modify it and change the timing and sequence of tasks to be solved. We are thinking about the implementation of a smart contract that will affect what functions we implement and in what sequence, but so far it is at the stage of developing the idea
 
 We believe that by actively engaging with our community and embracing a culture of continuous improvement, we can create a thriving ecosystem that empowers creators and revolutionizes the content creation landscape.
 
@@ -74,7 +92,7 @@ By leveraging the security features offered by Cosmos and Archway, we aim to pro
 Please make sure to refer to the official documentation of Cosmos and Archway networks for a more detailed understanding of their security features and how they contribute to the overall security of the Wotori Studio platform.
 
 \section{Conclusion}\label{conclusion}
-In conclusion, we firmly believe that the concept of content development introduced by Wotori Studio has the potential to revolutionize the entire animation industry, ranging from games to animation movies and the emerging metaverse spaces. This innovative approach to asset generation and collaboration opens up new possibilities for creators and paves the way for a more decentralized and inclusive content creation landscape.
+In conclusion, we firmly believe that the concept of content development introduced by Wotori Studio has the potential to revolutionise the entire animation industry, ranging from games to animation movies and the emerging virtual world (aka metaverses) spaces. This innovative approach to asset generation and collaboration opens up new possibilities for creators and paves the way for a more decentralised and inclusive content creation landscape.
 
 One of our main goals is to encourage the widespread adoption of this asset generation logic and inspire its integration into other projects. We understand that this is an experimental journey, and while we cannot guarantee a fully robust experience in the near future, we invite everyone to actively participate in the development of the API for collaboration in the Web3 realm and the future of digital content.
 
@@ -86,5 +104,8 @@ Join us at Wotori Studio as we embark on this exciting journey towards a new era
 
 \section{References}
 ...
+
+\section{Contacts}
+wotorimovako@gmail.com
 
 \end{document}
