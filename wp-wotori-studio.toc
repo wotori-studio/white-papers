@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Disclamer}{1}{section.1}%
+\contentsline {section}{\numberline {2}Abstract}{1}{section.2}%
+\contentsline {section}{\numberline {3}Introduction}{1}{section.3}%
+\contentsline {paragraph}{Outline}{1}{section*.2}%
+\contentsline {section}{\numberline {4}Design}{2}{section.4}%
+\contentsline {section}{\numberline {5}Implementation}{3}{section.5}%
+\contentsline {paragraph}{Ecosystem review:}{3}{section*.3}%
+\contentsline {paragraph}{Ekza Space Interface}{3}{section*.4}%
+\contentsline {paragraph}{Technology Selection:}{3}{section*.5}%
+\contentsline {paragraph}{Smart Contract Development:}{4}{section*.6}%
+\contentsline {paragraph}{User Interface Design:}{4}{section*.7}%
+\contentsline {paragraph}{Testing and Quality Assurance:}{4}{section*.8}%
+\contentsline {paragraph}{Deployment and Scalability}{4}{section*.9}%
+\contentsline {paragraph}{Security and Intellectual Property Protection:}{4}{section*.10}%
+\contentsline {paragraph}{Continuous Improvement and Updates:}{4}{section*.11}%
+\contentsline {section}{\numberline {6}Testing}{5}{section.6}%
+\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}%
+\contentsline {section}{\numberline {8}Ecosystem Websites}{6}{section.8}%
+\contentsline {section}{\numberline {9}References}{6}{section.9}%
+\contentsline {section}{\numberline {10}Contacts}{6}{section.10}%
