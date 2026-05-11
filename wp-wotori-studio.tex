@@ -1,153 +1,332 @@
-\documentclass[twocolumn]{article}
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[a4paper,margin=0.72in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xurl}
 \usepackage{hyperref}
-\hypersetup{bookmarksnumbered = true}
 \usepackage{fancyhdr}
+
+\hypersetup{
+    bookmarksnumbered=true,
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue
+}
+\urlstyle{same}
+\setlength{\columnsep}{0.28in}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=*,noitemsep,topsep=0.2em}
+\setlist[enumerate]{leftmargin=*,noitemsep,topsep=0.2em}
+\emergencystretch=2em
 
 \pagestyle{fancy}
 \fancyhf{}
-\rfoot{v0.5}
-\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\small Ekza Space Protocol}
+\fancyhead[R]{\small Creator-Owned 3D Assets}
+\fancyfoot[C]{\small Draft v0.6 -- \thepage}
+\renewcommand{\headrulewidth}{0.2pt}
 \renewcommand{\footrulewidth}{0pt}
+
+\newcommand{\protocol}[1]{\texttt{#1}}
+\newcommand{\bp}{basis points}
 
 \begin{document}
 
-\title{Empowering Creativity in the Digital Age: Leveraging Digital Platforms and Blockchain for Independent Content Creation and Shaping Modern Visuality}
-\author{Wotori Movako}
-\date{\today}
+\title{\textbf{Ekza Space Protocol}\\\large A Solana-Native Collaboration Layer for Creator-Owned 3D Assets, Avatars, and Virtual Spaces}
+\author{Wotori Movako\\Wotori Studio\\\href{mailto:wotorimovako@gmail.com}{wotorimovako@gmail.com}}
+\date{Draft v0.6 \quad May 2026}
 \maketitle
-\thispagestyle{fancy} 
+\thispagestyle{fancy}
 
-\newpage
+\begin{abstract}
+Ekza Space is a protocol stack for collaborative creation, provenance, and monetization of game-ready 3D assets. It is designed for artists, technical artists, writers, animators, world builders, game developers, and studios that need a transparent way to create reusable digital assets while preserving contribution history and ownership logic.
+
+The core thesis is simple: creative production should have a versioned, programmable, and revenue-aware layer similar to what Git introduced for software, but adapted to the realities of 3D production. A final character, prop, environment, rig, animation set, or virtual space is rarely the work of a single person. It may begin as a story fragment, evolve into concept art, become a model, receive UV layout, textures, rigging, animation, metadata, and engine integration. Ekza Space records this chain as a lineage graph and allows finalized releases to carry contributor-share snapshots and revenue vaults.
+
+The current Solana implementation is organized around three protocol elements: \protocol{solana-stellar}, the collaborative asset-universe and release-accounting layer; \protocol{solana-avatars}, the Web3 identity and avatar NFT layer; and \protocol{solana-ekza-space}, the finite virtual-space ownership layer. The most complete implemented flow today is the Stellar-to-Avatars path: a finalized collaborative release can be linked to an avatar drop, and mint fees can be routed back into the Stellar release vault. Together these elements form the foundation for an interoperable creator economy where digital assets can move from collaborative production into live virtual worlds, games, and metaverse interfaces.
+\end{abstract}
 
 \section{Disclaimer}
-The information provided is for informational purposes only and does not constitute an offer to sell or a solicitation to buy any securities.
-Forward-looking statements may involve risks and uncertainties.
-Wotori Studio makes no representations regarding future performance or updates to statements.
-This document is not investment, legal, tax, or financial advice.
-The Wotori platform will not be offered in certain jurisdictions.
-Consult a professional for advice.
-The Wotori Studio platform is under development and subject to change, so the information provided may not always reflect the current state of the platform.
+This document is provided for informational and technical discussion purposes only. It does not constitute an offer to sell, a solicitation to buy, or a recommendation regarding securities, tokens, NFTs, or any financial instrument. Nothing in this document should be interpreted as investment, legal, tax, financial, or accounting advice.
 
-\section{Abstract}
-This paper delves into the transformative potential of digital platforms in empowering content creators to reclaim ownership and control over their creative works. 
-By delving into develping of the innovative platform, we explore how these platforms are reshaping the content creation landscape, fostering collaboration, protecting intellectual property rights, and enabling new forms of artistic expression. 
-This approach not only wrests control from studios and places it back in the hands of individual artists but also empowers them with the freedom to enhance their creativity, thereby reshaping the animation industry and introducing a new realm of content that shapes modern visuality.
+The Ekza Space protocol, Wotori Studio interfaces, smart contracts, SDKs, asset pipelines, economic mechanisms, and roadmap are under active development and may change without notice. Any statements about possible future functionality, integrations, revenue models, market demand, adoption, or ecosystem growth are forward-looking and involve risks and uncertainties. Revenue sharing describes a protocol accounting mechanism and does not guarantee income.
 
-\section{Introduction}
+Digital assets, NFTs, smart contracts, and blockchain applications involve technical, legal, operational, market, and regulatory risks. Smart contracts may contain bugs or vulnerabilities, off-chain intellectual-property enforcement may require legal processes, and platform availability may depend on third-party infrastructure. Users and partners should perform their own technical, legal, and commercial due diligence before relying on the protocol in production.
 
-\paragraph{Problem}
-In the modern world, there is a dominance of creative studios where the best content is created in the largest studios for film, animation, and game design. 
-The best talents come to work there, unite, and create masterpieces. 
-They sign agreements with the studios, and all the creative content they create belongs entirely to those studios and not to the artists. 
-So, when millions of people later watch a movie or play a video game, the person who, for example, created the main or supporting character does not receive a penny, and all the royalties go to the studio, which makes the studio even more authoritative and gives it the opportunity to buy even more time from creative individuals and their creative potential. 
-Unfortunately, in the modern world, there are few tools for creative collaborations and unions that could create content of such a high level while still preserving the ownership rights for each artist who contributed to the development of a character, world, or universe.
+\section{Vision}
+The internet made creative distribution global, but ownership and production workflows remain highly centralized. The most valuable characters, worlds, animations, and game assets are usually created inside large studios. Contributors may receive salaries or one-time fees, while long-term intellectual-property value, licensing revenue, derivative rights, and platform leverage remain with the studio or publisher.
 
-\paragraph{Solution}
-To solve this problem, we have come up with a series of platforms that will implement a pipeline for creating animated films and computer games based on modern technologies that allow people to collaborate without dealing with paperwork. 
-Through these platforms, people will be able to come together, create worlds and universes, populate them with characters, develop their stories, and when the world reaches a stage where people can interact with it, buy or rent some content for use in the gaming environment, all participants in the content creation process will receive their share according to their participation in the project. 
-In this way, every person who participated, even if they just wrote a fragment of text or a character detail, becomes part of the chain of events in creation and will not be forgotten when it comes to rewards. 
-This concept turns artists into a kind of programmers, and such a platform becomes a system of control and version tracking, with each participant's contribution saved as a commit.
+Ekza Space proposes a different model: a creator-owned production network in which the history of an asset is not erased when the asset becomes commercially useful. Every meaningful contribution can become part of a verifiable production graph. The protocol does not try to replace art direction, studios, or professional pipelines. Instead, it gives creators and teams programmable infrastructure for collaboration, attribution, licensing, and downstream monetization.
 
-\paragraph{Outline}
-At Wotori Studio, our primary goal is to establish a platform and intuitive interfaces that empower users to generate content freely, independently, and without limitations. 
-We strongly believe in putting the power back into the hands of creators, enabling them to maintain control over their creative content, rather than having to sell their rights to studios or other entities.
+The intended result is a new category of creative infrastructure:
+\begin{itemize}
+    \item a Git-like contribution graph for 3D assets, stories, worlds, rigs, animations, and metadata;
+    \item a Solana-native accounting layer for releases, vaults, and contributor revenue claims;
+    \item persistent Web3 identities and avatar NFTs that can be used across virtual worlds;
+    \item virtual spaces whose settings and access rules are controlled by NFT ownership;
+    \item SDKs and interfaces that allow game developers to consume creator-owned assets without rebuilding the ownership layer.
+\end{itemize}
 
-By providing a borderless environment, we aim to break down geographical barriers and foster a global community of creators. 
+\section{Problem Statement}
+Modern digital production has three structural problems.
 
-Through interfaces we working on, we strive to make the content creation process seamless and accessible to all. 
-Whether you're an experienced professional or just starting out, our tools and features are designed to cater to a diverse range of creative needs. 
-We understand that every creator has a unique vision, and our platform is built with the flexibility to accommodate various artistic styles and mediums.
+\textbf{First, creative ownership is disconnected from creative labor.} A character or world may depend on concept artists, 3D modelers, texture artists, riggers, animators, technical artists, writers, and tool builders. Once the final product is released, most systems only recognize the publisher or the final asset owner, not the complete chain of contributors.
 
-Additionally, at Wotori Studio, we prioritize the protection of intellectual property rights. 
-We ensure that creators retain full ownership and control over their digital assets. 
-This means that artists can monetize their work, license it to others, or even collaborate with brands and businesses, all while maintaining their independence and creative integrity.
+\textbf{Second, collaboration tools are not revenue-aware.} Git, cloud drives, project managers, and art tools can store files and comments, but they are not designed to represent future licensing rights, revenue shares, or release-level contributor snapshots.
 
-By fostering a community that values creativity, innovation, and individuality, Wotori Studio is committed to empowering creators to thrive in the digital landscape.
-We believe that when artists have the freedom to express themselves without constraints, they can truly unleash their full potential and make a lasting impact on the world.
+\textbf{Third, NFT metadata alone is too narrow for complex production.} A typical NFT can represent a final asset, but a production-grade 3D avatar or environment contains a deeper structure: source files, optimized GLB/GLTF builds, texture sets, animation clips, rig constraints, usage licenses, compatibility data, and a chain of derivative work. Ekza Space treats the final NFT as only one output of a broader protocol state.
 
-Moreover, our methodology allows us to establish a new type of cooperation and communication between artists previously impossible. 
-Artists no longer need to look for partners and spend effort and energy on fixing relationships with the subsequent division of profits. 
-By providing artists with tools, we enable the emergence of new visual entities that simply could not appear without this kind of technology combined together. 
-Right before our eyes, we see how technology is changing the means and ways of human interaction and bringing new visuality to the world.
+\section{Protocol Thesis}
+Ekza Space treats creative work as a sequence of typed, linkable, and releasable artifacts. The protocol records enough state to answer four questions:
 
-\section{Innovative Design}\label{design}
-To address the tasks at hand, we envision the use of blockchain technologies capable of enabling such types of collaboration among individuals. 
-Today, there is a plethora of different systems, many of which have robust protocols and tools for writing micro-program logic that will manage rights, fair participation, and profit distribution, making the process simple, understandable, and transparent for all participants. 
-Each logical component is represented in the form of a smart contract with its entities and dependencies. 
-Everything that artists can create based on our technologies—assets, characters, locations, and other atomic parts of the universe—can be represented in the form of a well-established NFT protocol in our world, with all the resulting advantages such as a limited or unlimited number of such NFT assets. 
-Communities have the flexibility to adjust the rules by which their content will be distributed; for example, content may only be leased in quantities not exceeding 10, or a character or item may be created that can have only one unique copy throughout the entire internet multiverse. 
-Fantasizing about the endless possibilities that lie ahead of us can be endless, and we have already envisioned and implemented several smart contracts that realize this functionality.
+\begin{enumerate}
+    \item \textbf{What was created?} Asset records point to metadata and files stored through off-chain content-addressed or permanent storage.
+    \item \textbf{Who contributed?} Assets are linked to contributors, roles, and upstream parents.
+    \item \textbf{What is production-ready?} Draft assets can be reviewed, approved, finalized, and released.
+    \item \textbf{How is revenue shared?} A release can store a contributor-share snapshot and route claimable revenue through a vault.
+\end{enumerate}
 
+This separates the collaboration layer from the asset-consumption layer. A game may only need a finalized GLB avatar and a license proof. A marketplace may only need an NFT and metadata. A studio may need the full lineage graph. Ekza Space provides a shared protocol foundation while allowing each downstream application to choose how much of that state it uses.
 
-\section{Technical Implementation}\label{implementation}
+\section{Protocol Stack}
+The Ekza Space stack is composed of complementary Solana programs and application layers. The public implementation currently centers on the following repositories: \protocol{solana-stellar}, \protocol{solana-avatars}, and \protocol{solana-ekza-space}. The protocol layer uses Program Derived Addresses (PDAs) for deterministic program-owned state, a standard Solana pattern in which addresses are derived from seeds and the program id, with no private key controlling the PDA \cite{solana_pda}.
 
-\paragraph{Ecosystem review:}
-To successfully implement our concept, we see the need for parallel development of both the collaborative creativity platform itself and a platform where this content can be immediately utilized. 
-Such an approach is necessary to understand what APIs need to be developed to ensure that this solution can be flexibly integrated with other services. 
-For example, to understand and create an animation character protocol, it is essential to define how its parameters should be technically presented, such as the number of rig bones, basic animations and their names, the amount of polygon UV mapping, smart contract data structures and much more.
+\begin{table*}[t]
+\centering
+\small
+\caption{Ekza Space protocol elements}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{0.24\textwidth}}
+\toprule
+\textbf{Layer} & \textbf{Repository / module} & \textbf{Purpose} & \textbf{Primary objects} \\
+\midrule
+Collaboration and provenance & \protocol{solana-stellar} & Anchor-based protocol for collaborative asset universes. It supports universes, typed assets, asset lineage, approved releases, vaults, and contributor-share snapshots. & Universe, Asset, Lineage, Release, Release Vault, Contributor Share \\
+\addlinespace
+Identity and avatars & \protocol{solana-avatar} layer; public repo \protocol{solana-avatars} & Web3 identity layer for persistent profiles and avatar NFTs. Profiles act as metaverse passports and can link identity data to selected avatar NFTs. & Profile PDA, Avatar NFT, avatar metadata URI, avatar minter \\
+\addlinespace
+Virtual spaces & \protocol{solana-ekza-space} & Finite collection of numbered Spaces represented by Metaplex NFTs and PDA-backed settings. Space settings are updateable by NFT owners. & Config PDA, Space PDA, Space NFT, space settings URI \\
+\addlinespace
+Application and SDK layer & Web app, SDK, metaverse renderer, asset services & User-facing creation, minting, upload, conversion, rendering, and game integration. & UI, SDK methods, IPFS/Arweave manifests, GLB/GLTF assets \\
+\bottomrule
+\end{tabularx}
+\end{table*}
 
-\paragraph{Collaborational Core}\label{Collaborational Interface}
-At the heart of our initiative lies the Collaborational Interface, a dynamic platform designed to revolutionize the way content creators unite, collaborate, and thrive. This innovative interface is the cornerstone of our efforts to empower artists, writers, musicians, and creators across various disciplines, enabling them to forge vibrant communities around their creative visions
-The interface is meticulously crafted to support an array of collaboration models. Creators can opt for an open collaboration environment, inviting contributions from talents worldwide, or they can specify a select group of collaborators, curating a team that aligns with their creative direction. This flexibility ensures that every project can tailor its collaborative framework to best suit its unique needs and goals.
+\subsection{Solana Stellar: Collaboration Core}
+\protocol{solana-stellar} is the collaboration and accounting heart of the system. It reworks earlier CosmWasm business logic for Solana's account model and is designed around collaborative asset universes. Its README defines the core concepts as Universe, Asset, Lineage, Release, Release Vault, and Contributor Share \cite{solana_stellar}.
 
-At the current stage, we have a basic implementation of such an interface. 
-We have developed three main smart contracts. 
-One of them contains user universes where users can create their projects with worlds.
- Next is the contract currently named "Project," which stores entities created as NFT assets that can be used in games and animated films. 
- In terms of functionality, it is almost identical to the first one as it implements entity storage. 
- The most important contract contains the collaboration process, all parts of a single chain in the complex asset creation process, which can start with simple text and end with a complex 3D model with multiple animations and textures.
+A \textbf{Universe} is a collaborative workspace owned by a creator, team, or studio. In the current on-chain program, a Universe stores an owner, open/closed contribution flag, project type, metadata hash, and an immutable collaboration policy. The web interface may present richer creation policies such as closed, approval-required, and open contribution, plus creation prices or review deposits; these are product-layer metadata unless and until they are enforced directly by program constraints or escrow accounts. A \textbf{typed Asset} is an on-chain record for an off-chain artifact such as concept art, a 3D model, a rig, an animation, a script, a texture set, or metadata. \textbf{Lineage} connects assets into a directed acyclic graph, allowing a final asset to reference all upstream work. A \textbf{Release} is a production snapshot of an approved asset. A \textbf{Release Vault} can collect SOL-denominated revenue, while \textbf{Contributor Shares} define allocation in \bp{} independent from the limited creator fields available in ordinary NFT metadata.
 
-Regarding the contract containing collaboration, it is also important to note that its essential component is a profit distribution mechanism. 
-We believe it should be flexible to configure, but focusing on the main aspect, we have implemented a core mechanism that distributes profits among all participants in the chain. 
-When text is created and then an image is generated based on that text, followed by the creation of a 3D model based on the image, then UV layout, texturing, rigging, and animation, all these processes are linked together by sequence identifiers. 
-In the end, we can reconstruct all participants who took part in developing the final product. 
-Based on this information, we can subsequently distribute profits from revenue at a higher level.
+This design allows Ekza Space to represent a real production chain:
+\begin{center}
+\small
+Text idea $\rightarrow$ concept art $\rightarrow$ 3D model $\rightarrow$ UV layout $\rightarrow$ textures $\rightarrow$ rig $\rightarrow$ animation $\rightarrow$ release.
+\end{center}
 
+The final release can be consumed by a marketplace, avatar minter, game, renderer, or virtual world. In the implemented Stellar-to-Avatars bridge, a finalized Stellar release can initialize avatar-drop state in \protocol{solana-avatars}; the bridge writes Stellar link accounts and marks the Stellar release as linked. The upstream chain remains available for attribution, governance, licensing, auditing, and revenue distribution.
 
-\paragraph{Metaverse Core}
-At the core of the metaverse engine, we envision basic navigation through a 3D world, dynamic loading of 3D character models and assets, the ability to move through space, and users being able to see each other and information about each other. 
-This should be sufficient to begin building an integration bridge and initiate a logical dual process of improvement in both components of the whole. 
-The development of data structures on the collaboration engine side and necessary implementations on the metaverse engine side to support and render them, as well as flexible user content management, are essential for this endeavor.
+\subsection{Solana Avatar: Identity and Avatar NFTs}
+The \protocol{solana-avatar} layer, implemented publicly as \protocol{solana-avatars}, gives users persistent identities for virtual worlds. The repository describes the protocol as a decentralized identity system for the metaverse. It combines a Profile Contract that stores identity data via PDAs and an Avatar Minter Contract that lets creators deploy avatar NFT collections with configurable fees and supply \cite{solana_avatars}.
 
-The essence of these developments is to provide creators with the tools and platform necessary to not just partake in, but actively shape the ecosystems they inhabit. 
-The potential for creators to see their work come alive not only within metaverse we are building during this research but also across other platforms amplifies the value of their contributions and the potential for creative collaboration and monetization.
+This layer solves a different problem from \protocol{solana-stellar}. Stellar answers: \emph{How was this asset created, by whom, and how should its release economics work?} Avatar answers: \emph{Who is the user in the virtual world, and which NFT represents them?}
 
-By prioritizing compatibility and ease of integration, we lay the groundwork for a future where creators can effortlessly navigate between worlds, bringing their unique contributions to an ever-expanding universe of possibilities. 
-This vision for our metaverse engine is not just about creating a singular destination but about contributing to a larger ecosystem where creativity knows no bounds and every creator has the opportunity to make their mark across the vast expanse of the digital universe.
+A profile can store or link public identity data such as username, description, and avatar metadata. Avatar NFTs can point to 2D or 3D models through metadata and IPFS links. In the current bridge, finalized Stellar releases can become eligible sources for avatar drops with configurable mint price and supply. When a Stellar-linked avatar is minted, the minting fee can be deposited into the Stellar release vault, while the collaboration accounting remains inside the Stellar layer.
 
-\paragraph{Testing and Quality Assurance:}
-Quality assurance played a crucial role in the development process of this platforms. 
-We conducted rigorous testing to ensure the stability, security, and functionality of the platform. 
-This included comprehensive smart contract unit testing and user acceptance testing to gather feedback from real users.
+\subsection{Solana Ekza Space: Virtual Space Ownership}
+\protocol{solana-ekza-space} is the spatial ownership layer. Its current README describes a minimal Anchor program that manages a finite collection of numbered Spaces. Each Space is represented by a Metaplex NFT plus a PDA with on-chain settings \cite{solana_ekza_space}.
 
-\paragraph{Security and Intellectual Property Protection:}
-The bedrock of our security strategy is deeply rooted in the advanced blockchain technologies we employ. 
-These technologies not only provide a decentralized ledger that is inherently resistant to tampering and fraud but also ensure that all transactions and content ownership records are immutable and transparent. 
-This foundational security measure is critical in protecting the intellectual property rights of our users, ensuring that their creations remain their own.
+The program contains a Config PDA and Space PDAs. The \protocol{mint\_next\_space} instruction mints the next available Space as a 1/1 NFT, transfers SOL to a treasury, creates the Space PDA, and allows a metadata URI to be provided. The \protocol{update\_space\_settings} instruction updates settings such as name, configuration URI, openness, and editability, with access gated by ownership of the Space NFT.
 
-It is imperative to conduct thorough testing on our smart contracts to eradicate vulnerabilities and uphold the integrity of user assets. While we have implemented numerous unit tests for a significant portion of the API during our development phase, we acknowledge the necessity for further enhancement to encompass all possible scenarios.
+This gives Ekza Space a place layer: not only characters and assets, but also virtual rooms, galleries, worlds, and collaboration zones whose control is portable and verifiable.
 
+\section{End-to-End Workflow}
+An Ekza Space workflow can be understood as a path from identity to creation to release to usage.
 
-\paragraph{Continuous Improvement and Updates:}
-We are committed to the ongoing development and enhancement of our platform. 
-We recognize that our team may not be able to cover all possible use cases, which is why we highly value user feedback and suggestions. 
-By incorporating the insights and perspectives of our users, we can refine our platform to better align with the needs and vision of the community.
+\begin{enumerate}
+    \item \textbf{Identity.} A creator connects a Solana wallet and creates a profile in the avatar layer. This profile becomes a public creative identity and can later be linked to avatar NFTs or assets.
+    \item \textbf{Universe creation.} A team opens a Universe in \protocol{solana-stellar}. The Universe defines the workspace where assets and derivative work will be recorded.
+    \item \textbf{Asset contribution.} Contributors add typed assets with metadata URIs. These assets may represent sketches, prompts, scripts, models, rigs, texture files, animations, or engine-ready builds.
+    \item \textbf{Lineage linking.} Each new derivative asset can reference its parent assets. This builds a production graph rather than a flat file list.
+    \item \textbf{Review and release.} When an asset is ready, its creator submits it and the Universe owner can approve or reject it. Approved assets can be finalized into Releases. The release stores a contributor-share snapshot derived from the Universe collaboration policy.
+    \item \textbf{Avatar publishing and integration.} A finalized Stellar release can be published as a \protocol{solana-avatars} avatar drop with mint price and maximum supply. The avatar layer stores link accounts back to the Stellar release, so users and applications can navigate from the minted avatar to its production source.
+    \item \textbf{Revenue and claims.} Revenue from direct vault deposits and Stellar-linked avatar minting can be routed into the release vault today. Contributors claim according to the release snapshot. Licensing, rent, sale, Space usage, and downstream application revenue are integration targets that can use the same vault-and-share model.
+\end{enumerate}
 
-\section{Conclusion}\label{conclusion}
-In conclusion, we firmly believe that the concept of content development introduced here has the potential to revolutionize the entire content creation industry. 
-This innovative approach to asset generation and collaboration opens up new possibilities for creators and paves the way for a more decentralized and inclusive content creation landscape.
+\section{Data Model}
+The protocol deliberately separates on-chain records from off-chain payloads.
 
-One of our main goals is to encourage the widespread adoption of this asset generation logic and inspire its integration into other projects. 
-We extend an open invitation to artists and developers, inviting them to join us in generating constructive and inspiring content together. 
-Together, let us shape the future of content creation, embrace the potential of decentralized collaboration, and create a vibrant and inclusive ecosystem where creativity knows no bounds.
+\textbf{On-chain state} should contain durable facts that require trust minimization: object identifiers, owner addresses, state transitions, parent links, release status, basis-point shares, vault accounting, and permission checks.
+
+\textbf{Off-chain metadata} should contain large or frequently changing payloads: asset files, GLB/GLTF models, texture maps, preview images, animation manifests, license text, compatibility tags, and editorial descriptions. These payloads can be stored through IPFS, Arweave, or other storage providers, with the on-chain record pointing to the relevant URI.
+
+This separation matters because production-grade 3D content is too large and too diverse to live fully on-chain. The chain should not store every polygon, texture, or animation curve. Instead, it should store the provenance, permissions, and economic state that make the asset trustworthy and interoperable.
+
+\section{NFTs, Metadata, and Why Ekza Extends Them}
+NFTs are useful final containers for ownership and transfer, but they are not sufficient by themselves for collaborative production. The Metaplex Token Metadata program is a fundamental Solana program for attaching additional data to fungible and non-fungible tokens. It attaches metadata to mint accounts via PDAs, including creator information, shares, and off-chain JSON URIs \cite{metaplex_token_metadata}.
+
+Ekza Space builds on this idea but expands it in three ways:
+\begin{itemize}
+    \item \textbf{Lineage beyond the final NFT.} Ekza records upstream creative dependencies, not only the final token metadata.
+    \item \textbf{Release-level economics.} Contributor shares can be stored as a release snapshot, independent from metadata creator limits.
+    \item \textbf{Application-specific rights.} Asset manifests can describe licensing, game compatibility, derivative permissions, and revenue routes that may not fit into a single NFT metadata object.
+\end{itemize}
+
+In this model, the NFT is a portable interface for ownership, identity, or space control. The protocol state behind it gives the asset its production memory.
+
+\section{Contributor Economics}
+Ekza Space introduces a programmable approach to collaborative economics. A release can store a contributor-share allocation in \bp{}. When revenue reaches a vault, contributors can claim their allocated portions.
+
+The current \protocol{solana-stellar} implementation supports four collaboration policies:
+\begin{itemize}
+    \item \textbf{Equal / lineage-equal.} The finalized release computes equal shares across the distinct contributors found in the reachable asset lineage.
+    \item \textbf{Contribution weighted.} The finalized release computes shares by counting each contributor's assets in the reachable lineage graph, then normalizing those counts to 10,000 \bp{}.
+    \item \textbf{Custom.} The Universe owner provides manual contributor shares before finalization. This mode is intended for explicit off-chain agreements or legacy workflows.
+\end{itemize}
+
+Manual share editing is rejected for the automatic lineage policies, and the Universe collaboration policy is immutable after Universe creation. This prevents a team from joining under one economic rule and having that rule silently changed before release.
+
+The model supports several revenue sources:
+\begin{itemize}
+    \item implemented today: direct SOL deposits into a release vault;
+    \item implemented today: Stellar-linked avatar minting fees routed from \protocol{solana-avatars} into a Stellar release vault;
+    \item integration target: primary sale of asset NFTs or Space NFTs;
+    \item integration target: licensing fees for game or metaverse usage;
+    \item integration target: rental or access fees for virtual spaces;
+    \item integration target: downstream application revenue routed by integrated partners.
+\end{itemize}
+
+The protocol does not require every asset universe to use the same economic policy. A solo creator can receive 100\% through automatic lineage logic if they are the only contributor, or through a custom share. A team can rely on protocol-computed equal or weighted lineage accounting, while a studio can use custom splits for explicit agreements and only release selected assets publicly. The important property is that the release snapshot makes the accounting explicit before revenue is distributed.
+
+\section{Licensing and Intellectual Property}
+Blockchain state can record attribution and economic commitments, but it does not automatically solve all intellectual-property questions. Ekza Space should therefore treat licensing as a first-class metadata layer.
+
+A production-ready asset manifest should include:
+\begin{itemize}
+    \item asset type, version, and release identifier;
+    \item author and contributor references;
+    \item permitted use cases, such as personal avatar use, game integration, commercial use, remixing, or resale;
+    \item restrictions, including prohibited content categories or non-transferable rights;
+    \item dependency list and parent asset references;
+    \item technical compatibility data, such as polygon budget, rig standard, animation clips, texture resolution, and target runtime.
+\end{itemize}
+
+This approach makes Ekza Space more than an NFT minting system. It becomes a rights-aware asset pipeline where final outputs can be safely used by developers who need to know both what an asset is and what they are allowed to do with it.
+
+\section{Interoperability and Developer Experience}
+The protocol is designed to be consumed by applications that may not care about every internal detail. A game developer should be able to ask:
+\begin{itemize}
+    \item Does this wallet own or have a license for this avatar or asset?
+    \item Where is the engine-ready GLB/GLTF file?
+    \item Which animations and rig conventions are available?
+    \item Is this asset approved, finalized, and safe to load?
+    \item Which Space does this user own, and what settings does it expose?
+\end{itemize}
+
+The SDK layer should abstract these questions into developer-friendly methods. The long-term goal is to let applications integrate Ekza assets without becoming blockchain specialists. A WebGL renderer, Bevy game, Three.js application, or custom engine should be able to fetch profiles, avatars, spaces, and releases through stable APIs while still relying on Solana for ownership and accounting.
+
+\section{Security Model}
+The protocol security model depends on a clear division of responsibility.
+
+\textbf{Program authority.} PDAs provide deterministic, program-controlled accounts. Only the owning program can sign for a PDA through Solana runtime mechanisms, which is why PDAs are suitable for vaults, profiles, spaces, and other program-owned state \cite{solana_pda_accounts}.
+
+\textbf{Ownership gating.} Some actions, such as updating Space settings, should require proof that the signer owns the relevant NFT token account. This makes ownership portable while keeping settings under protocol control.
+
+\textbf{State transitions.} Asset states are explicit: draft, submitted, approved, rejected, finalized, minted, and archived. Release states are explicit: draft, finalized, linked, and archived. Once a release is finalized, its contributor-share snapshot should not be silently rewritten.
+
+\textbf{Testing and auditability.} The public repositories include Anchor tests or test instructions, including LiteSVM usage for \protocol{solana-ekza-space} and \protocol{anchor test} for \protocol{solana-stellar}. Before production launch, the protocol should undergo expanded tests, adversarial review, and independent smart-contract audits.
+
+\section{Governance and Moderation}
+Open creation does not mean absence of rules. Ekza Space needs moderation and governance mechanisms at several levels:
+\begin{itemize}
+    \item workspace-level rules for who may contribute to a Universe;
+    \item approval workflows before an asset becomes a release;
+    \item content policy enforcement for public discovery, marketplace listings, and featured spaces;
+    \item dispute processes for contributor shares, copied work, and licensing violations;
+    \item administrative recovery or freeze policies, if any, disclosed clearly to users.
+\end{itemize}
+
+The current on-chain review authority is the Universe owner: creators can submit assets, and the owner can approve or reject them. Richer admin sets, paid creation gates, refundable review deposits, moderation queues, and dispute workflows should be treated as product or roadmap features unless encoded directly in the program. The protocol should prefer transparent rules and narrow administrative powers. Where off-chain decisions are unavoidable, they should be separated from immutable on-chain facts and documented in the user interface.
+
+\section{Current Development Status}
+Ekza Space is in an early protocol and product phase. Public repositories show three working directions:
+\begin{itemize}
+    \item \protocol{solana-stellar}: a Solana protocol core for universes, assets, lineage, releases, contributor shares, vault deposits, and revenue claims \cite{solana_stellar};
+    \item \protocol{solana-avatars}: an avatar identity and NFT minting system with profile PDAs, avatar drops, metadata links, a browser interface, and Stellar-linked avatar-drop support \cite{solana_avatars};
+    \item \protocol{solana-ekza-space}: a minimal Anchor program for finite numbered Spaces, 1/1 NFTs, treasury payments, and ownership-gated settings \cite{solana_ekza_space}.
+\end{itemize}
+
+Wotori Studio positions Ekza Space as a collaboration and monetization ecosystem for 3D assets, described as a GitHub-like system for 3D artists where contributors co-build reusable assets while keeping ownership of their work \cite{wotori_site}.
+
+\section{Implementation Boundaries}
+Several product concepts are intentionally broader than the current smart-contract surface.
+
+\textbf{Creation policy and deposits.} The program currently enforces a binary Universe contribution gate: open Universes allow public asset creation, while closed Universes restrict creation to the owner. The web interface may expose closed, approval-required, and open policies, entity creation price, and review deposit fields through metadata. For these to become trust-minimized economic rules, they should be represented as explicit on-chain fields, escrow movements, and refund/slash instructions.
+
+\textbf{Avatar publishing.} The implemented bridge publishes a finalized Stellar release as avatar-drop state in \protocol{solana-avatars}; it does not automatically attach the avatar to a profile or place it inside a Space. Those are downstream integration steps.
+
+\textbf{Licensing and manifests.} License kind is represented on assets, and richer license text, compatibility data, file manifests, and derivative permissions should live in signed or content-addressed metadata. The protocol can reference and enforce parts of that metadata over time, but the current implementation should not be described as a full legal-rights enforcement engine.
+
+\section{Roadmap}
+The roadmap can be organized into five phases.
+
+\textbf{Phase 1: Protocol hardening.} Complete unit and integration tests, improve account constraints, finalize state machines, add error coverage, and document all instructions.
+
+\textbf{Phase 2: Asset manifest standard.} Define a stable JSON schema for 3D assets, avatars, spaces, licenses, compatibility data, and contributor metadata.
+
+\textbf{Phase 3: Creator interface.} Build a production-ready web interface for creating universes, uploading assets, linking lineage, approving releases, minting avatars, and managing spaces.
+
+\textbf{Phase 4: SDK and engine integrations.} Provide SDK methods for profile lookup, ownership verification, asset fetching, release validation, and space loading. Prioritize WebGL/Three.js and game-engine friendly GLB/GLTF flows.
+
+\textbf{Phase 5: Marketplace and partner ecosystem.} Enable licensing, rental, revenue routing, creator discovery, public collections, and downstream integrations with games and virtual worlds.
+
+\section{Risks and Limitations}
+Ekza Space should be evaluated with realistic expectations.
+
+\textbf{Technical risk.} Smart contracts can contain vulnerabilities, and off-chain storage can fail or become unavailable if not designed carefully.
+
+\textbf{Legal risk.} On-chain attribution does not automatically resolve copyright, trademark, moral rights, work-for-hire arrangements, or jurisdiction-specific disputes.
+
+\textbf{Adoption risk.} A creator-owned economy depends on artists, developers, players, and platforms choosing to use the same asset and identity standards.
+
+\textbf{Economic risk.} NFT sales, licensing demand, and marketplace liquidity are uncertain. Contributor-share mechanisms only distribute revenue that actually exists.
+
+\textbf{Content risk.} Open asset creation requires moderation, safety policies, and dispute handling to prevent plagiarism, abuse, illegal content, or brand misuse.
+
+\section{Conclusion}
+Ekza Space is an attempt to give creative collaboration a protocol layer. It brings together asset lineage, contributor attribution, release snapshots, vault-based revenue claims, Web3 avatar identity, and virtual space ownership into a single Solana-native ecosystem.
+
+The core idea is not merely to mint NFTs. The deeper goal is to preserve the memory of creation: who imagined the character, who shaped the model, who painted the textures, who rigged the body, who animated the movement, who made it usable in a world, and how each participant can remain connected to the asset after it becomes valuable.
+
+If successful, Ekza Space can become infrastructure for a new visual economy: one where independent creators can collaborate at studio scale without surrendering the entire future of their work, and where games and virtual worlds can load creator-owned assets with clear provenance, identity, and licensing.
 
 \section{Ecosystem Websites}
 \begin{itemize}
-    \item Website 1: \url{https://wotori.io}
-    \item Website 3: \url{https://ekza.io}
+    \item Wotori Studio: \url{https://wotori.io}
+    \item Ekza Space: \url{https://ekza.io}
+    \item Avatar interface: \url{https://avatar.ekza.io}
 \end{itemize}
 
 \section{Contacts}
 Email: \href{mailto:wotorimovako@gmail.com}{wotorimovako@gmail.com}
+
+\small
+\raggedright
+\begin{thebibliography}{9}
+\bibitem{solana_stellar} Ekza Space, \emph{solana-stellar README}. \href{https://github.com/ekza-space/solana-stellar}{github.com/ekza-space/solana-stellar}
+\bibitem{solana_avatars} Ekza Space, \emph{solana-avatars README}. \href{https://github.com/ekza-space/solana-avatars}{github.com/ekza-space/solana-avatars}
+\bibitem{solana_ekza_space} Ekza Space, \emph{solana-ekza-space README}. \href{https://github.com/ekza-space/solana-ekza-space}{github.com/ekza-space/solana-ekza-space}
+\bibitem{wotori_site} Wotori Studio, \emph{Wotori Studio website}. \href{https://www.wotori.io/}{wotori.io}
+\bibitem{solana_pda} Solana Foundation, \emph{Program Derived Addresses}. \href{https://solana.com/docs/core/pda}{solana.com/docs/core/pda}
+\bibitem{solana_pda_accounts} Solana Foundation, \emph{PDA Accounts}. \href{https://solana.com/docs/core/pda/pda-accounts}{solana.com/docs/core/pda/pda-accounts}
+\bibitem{metaplex_token_metadata} Metaplex, \emph{Token Metadata Overview}. \href{https://www.metaplex.com/docs/smart-contracts/token-metadata}{metaplex.com/docs/smart-contracts/token-metadata}
+\end{thebibliography}
 
 \end{document}
